@@ -1,0 +1,30 @@
+#!/bin/bash
+file="COVID19.txt"
+
+a=0
+b=0
+dum1="c"
+dum2="c"
+dum3="c"
+
+IFS=$','
+
+for x in $(cat $file)
+do
+        dum3=$dum2
+        dum2=$dum1
+        if [[ $x = "Thailand" ]]; then
+                ((a=$a+$dum2))
+                ((b=$b+$dum3))
+        fi
+        dum1="$x"
+done
+
+echo -e "Number of infections in Thailand:$b \nNumber of casualties in Thailand:$a"
+
+perinf=$(echo "scale=3; $b*100/69428524" | bc) #69428524 is popdata2018
+percas=$(echo "scale=3; $a*100/$b" | bc)
+
+echo -e "Percentage of infections in Thailand:$perinf \nPercentage of casualties in Thailand:$percas"
+exit 0
+~                                                                                                                                                                                            ~                                                      

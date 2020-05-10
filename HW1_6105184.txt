@@ -1,0 +1,63 @@
+#!/bin/bash
+read -p "Give me your nickname: " name
+
+if [ -z $name ] ; then
+        echo "Please refill your information"
+        exit 1
+fi
+
+read -p "Give me your age(in numbers and in years): " age
+
+if [ -z $age ] ; then
+        echo "Please refill your information"
+        exit 1
+fi
+if [ $age -ge 200 ]; then
+        echo "Are you kidding me? Please fill age again"
+        exit 2
+fi
+if [ $age -le 0 ]; then
+        echo "How were you born? Please fill age again"
+        exit 2
+fi
+
+read -p "Specify the gender(after born(male/female)): " gender
+if [ -z $gender ] ; then
+        echo "Please refill your information"
+        exit 1
+fi
+if [ $gender != "female" -a $gender != "male" ] ; then
+        echo "Please fill your gender"
+        exit 2
+fi
+
+echo "This is your information"
+echo -e "Name:$name \nAge:$age \nGender:$gender"
+
+echo -e "This is the list of risk country"
+echo -e "1.China\n2.Hong Kong\n3.Makao\n4.Taiwan\n5.Singapore\n6.Japan\n7.Sout
+h Korea\n8.UK\n9.Italy\n10.Iran\n11.France\n12.Germany\n13.USA"
+read -p "Have you just back from risk country (put number of choice and 0 mean
+s no): " country
+
+if [ $country -ne 0 ]; then
+       echo "Please go to see a doctor right away!! You are at risk of Covid-1
+9."
+       exit 0
+fi
+echo "Do you have symptoms in this list?"
+echo -e "1.sore thorat\n2.fever\n3.dry cough\n4.triedness\n5.have a aches and
+pains\n6.nasal congestion\n7.runny nose"
+read -p "Give me your answer:" ans
+if [ $ans != "yes" -a $ans != "no" ]; then
+       echo "Please read the question and answer it again"
+       exit 2
+fi
+if [ $ans = "yes" ]; then
+       echo "Please go to see a doctor right away!! You are at risk of Covid-1
+9."
+       exit 0
+else
+        echo "Congratulation! you are free from covid-19"
+        exit 0
+fi
